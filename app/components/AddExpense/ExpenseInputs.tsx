@@ -44,7 +44,7 @@ export default function ExpenseInputs({ click, setClick }: propsType) {
     setcost('');
     const accessToken = getCookie('accessToken');
     console.log(accessToken);
-    const res = await fetch('http://localhost:4000/expenses', {
+    const res = await fetch('https://crudnestback.onrender.com/expenses', {
       method: 'POST',
       headers: {
         authorization: `bearer ${accessToken}`,

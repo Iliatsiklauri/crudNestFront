@@ -26,7 +26,7 @@ export default function AuthModal({ type }: { type?: boolean }) {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:4000/auth/sign-${type ? 'up' : 'in'}`,
+        `https://crudnestback.onrender.com/auth/sign-${type ? 'up' : 'in'}`,
         {
           method: 'Post',
           headers: {

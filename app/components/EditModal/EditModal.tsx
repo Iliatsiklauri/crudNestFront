@@ -29,7 +29,7 @@ export default function EditModal({
 
     if (Object.keys(updatedFields).length > 0) {
       const token = getCookie('accessToken');
-      fetch(`http://localhost:4000/expenses/${id}`, {
+      fetch(`https://crudnestback.onrender.com/expenses/${id}`, {
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,

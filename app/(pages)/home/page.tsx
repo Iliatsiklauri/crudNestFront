@@ -12,18 +12,21 @@ export default function Page() {
 
   async function currentUser() {
     const token = getCookie('accessToken');
-    const data = await fetch(`http://localhost:4000/auth/current-user`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    const data = await fetch(
+      `https://crudnestback.onrender.com/auth/current-user`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     return data.json();
   }
   async function getData(id: string) {
     const token = getCookie('accessToken');
-    const data = await fetch(`http://localhost:4000/users/${id}`, {
+    const data = await fetch(`https://crudnestback.onrender.com/users/${id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

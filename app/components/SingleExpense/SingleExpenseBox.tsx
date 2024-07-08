@@ -21,13 +21,16 @@ export default function SingleExpenseBox({
   async function deleteExpense(_id: string) {
     try {
       const token = getCookie('accessToken');
-      const response = await fetch(`http://localhost:4000/expenses/${_id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `https://crudnestback.onrender.com/expenses/${_id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     } catch (error) {
       console.log(error, 'error');
     }
