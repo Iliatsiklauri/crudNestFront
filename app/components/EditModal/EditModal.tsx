@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next';
 import React, { useState } from 'react';
 
 export default function EditModal({
@@ -27,12 +28,13 @@ export default function EditModal({
     if (cost) updatedFields.cost = cost;
 
     if (Object.keys(updatedFields).length > 0) {
+      const token = getCookie('accessToken');
       fetch(`http://localhost:4000/expenses/${id}`, {
         method: 'PATCH',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        credentials: 'include',
         body: JSON.stringify(updatedFields),
       })
         .then((response) => response.json())
@@ -112,4 +114,7 @@ export default function EditModal({
       </div>
     </div>
   );
+}
+function getToken(arg0: string) {
+  throw new Error('Function not implemented.');
 }

@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next';
 import React, { useState } from 'react';
 type propType = {
   title: string;
@@ -41,12 +42,13 @@ export default function ExpenseInputs({ click, setClick }: propsType) {
     setTitle('');
     setDesc('');
     setcost('');
+    const accessToken = getCookie('accessToken');
+    console.log(accessToken);
     const res = await fetch('http://localhost:4000/expenses', {
       method: 'POST',
-      credentials: 'include',
       headers: {
+        authorization: `bearer ${accessToken}`,
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
       body: JSON.stringify(info),
     });

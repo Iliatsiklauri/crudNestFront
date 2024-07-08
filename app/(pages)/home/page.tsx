@@ -2,23 +2,33 @@
 import ExpenseInputs from '@/app/components/AddExpense/ExpenseInputs';
 import Header from '@/app/components/header/Header';
 import SingleExpenseBox from '@/app/components/SingleExpense/SingleExpenseBox';
+import { getCookie, getCookies } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 
 export default function Page() {
   const [realData, setData] = useState<any[]>([]);
   const [click, setClick] = useState(false);
   const [id, setId] = useState(null);
+
   async function currentUser() {
+    const token = getCookie('accessToken');
     const data = await fetch(`http://localhost:4000/auth/current-user`, {
       method: 'GET',
-      credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     });
     return data.json();
   }
   async function getData(id: string) {
+    const token = getCookie('accessToken');
     const data = await fetch(`http://localhost:4000/users/${id}`, {
       method: 'GET',
-      credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     });
     return data.json();
   }
@@ -54,4 +64,7 @@ export default function Page() {
       </div>
     </div>
   );
+}
+function getToken() {
+  throw new Error('Function not implemented.');
 }
